@@ -1,4 +1,4 @@
-package com.tourism.tourism;
+package com.tourism;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
