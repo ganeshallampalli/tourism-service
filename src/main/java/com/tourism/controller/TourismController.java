@@ -6,6 +6,10 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Tourism Controller
+ */
+
 @RestController
 @RequestMapping("/api")
 @Api(value = "Api's for Tourism")
