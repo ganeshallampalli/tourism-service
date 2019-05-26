@@ -1,12 +1,17 @@
 package com.tourism.model;
 
-public class RegisterUserRequest extends BaseRequest {
+public class RegisterUserRequest {
 
     private String firstName;
+
     private String lastName;
+
     private String phNo;
+
     private String email;
+
     private String password;
+
     private String role;
 
     public String getFirstName() {

@@ -1,10 +1,11 @@
 package com.tourism.datamodel.DAOService;
 
-import com.tourism.model.BaseResponse;
-import com.tourism.model.RegisterUserRequest;
-import com.tourism.model.RegisterUserResponse;
+import com.tourism.model.*;
 
 public interface UserDAOService {
 
-    BaseResponse<RegisterUserResponse> createUser(RegisterUserRequest registerUserRequest);
+    RegisterUserResponse createUser(RegisterUserRequest registerUserRequest);
+
+    LoginUserResponse loginUser(LoginUserRequest loginUserRequest);
+
 }

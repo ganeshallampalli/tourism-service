@@ -1,12 +1,10 @@
 package com.tourism.model;
 
-public class BaseResponse<T> {
+public class BaseResponse {
 
     private String code;
 
     private String message;
-
-    private T data;
 
     public String getCode() {
         return code;
@@ -24,11 +22,4 @@ public class BaseResponse<T> {
         this.message = message;
     }
 
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
 }

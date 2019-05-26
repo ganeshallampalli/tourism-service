@@ -1,8 +1,8 @@
 package com.tourism.controller;
 
-import com.tourism.datamodel.DAOService.RoleDAOService;
 import com.tourism.datamodel.DAOService.UserDAOService;
-import com.tourism.model.BaseResponse;
+import com.tourism.model.LoginUserRequest;
+import com.tourism.model.LoginUserResponse;
 import com.tourism.model.RegisterUserRequest;
 import com.tourism.model.RegisterUserResponse;
 import io.swagger.annotations.Api;
@@ -24,15 +24,15 @@ public class TourismController {
     @Autowired
     private UserDAOService userDAOService;
 
-    @GetMapping("/v1/login")
+    @PostMapping("/v1/login")
     @ApiOperation(value = "Login User API", response = String.class)
     @ApiResponses({
             @ApiResponse(code = 200, message = "Login Successful"),
             @ApiResponse(code = 404, message = "API Not Found")
 
     })
-    public String login(@RequestParam(value = "username") String userName, @RequestParam(value = "password") String password) {
-        return "Login Successful";
+    public LoginUserResponse login(@RequestBody LoginUserRequest loginUserRequest) {
+        return userDAOService.loginUser(loginUserRequest);
     }
 
     @PostMapping("/v1/register")
@@ -43,7 +43,7 @@ public class TourismController {
             @ApiResponse(code = 404, message = "API Not Found")
 
     })
-    public BaseResponse<RegisterUserResponse> register(@RequestBody RegisterUserRequest registerUserRequest) {
+    public RegisterUserResponse register(@RequestBody RegisterUserRequest registerUserRequest) {
         return userDAOService.createUser(registerUserRequest);
     }
 }
