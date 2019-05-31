@@ -8,38 +8,36 @@ import javax.persistence.Id;
 @Entity
 public class Role {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 
-    private String roleType, permission;
+	private String roleType;
 
-    public Integer getId() {
-        return id;
-    }
+	private String permission;
 
-    public String getRoleType() {
-        return roleType;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setRoleType(String roleType) {
-        this.roleType = roleType;
-    }
+	public String getRoleType() {
+		return roleType;
+	}
 
-    public String getPermission() {
-        return permission;
-    }
+	public void setRoleType(String roleType) {
+		this.roleType = roleType;
+	}
 
-    public void setPermission(String permission) {
-        this.permission = permission;
-    }
+	public String getPermission() {
+		return permission;
+	}
 
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", roleType='" + roleType + '\'' +
-                ", permission='" + permission + '\'' +
-                '}';
-    }
+	public void setPermission(String permission) {
+		this.permission = permission;
+	}
+
+	@Override
+	public String toString() {
+		return "Role{" + "id=" + id + ", roleType='" + roleType + '\'' + ", permission='" + permission + '\'' + '}';
+	}
 }

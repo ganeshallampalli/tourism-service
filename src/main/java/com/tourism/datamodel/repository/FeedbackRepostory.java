@@ -1,14 +1,12 @@
 package com.tourism.datamodel.repository;
 
-import com.tourism.datamodel.User;
+import com.tourism.datamodel.Feedback;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface FeedbackRepostory extends CrudRepository<Feedback, Integer> {
 
 	@SuppressWarnings("unchecked")
-	User save(User user);
-
-	User findByEmailId(String emailId);
+	Feedback save(Feedback feedback);
 }

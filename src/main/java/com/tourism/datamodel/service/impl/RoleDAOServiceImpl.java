@@ -1,6 +1,6 @@
-package com.tourism.datamodel.DAOService.impl;
+package com.tourism.datamodel.service.impl;
 
-import com.tourism.datamodel.DAOService.RoleDAOService;
+import com.tourism.datamodel.service.RoleDAOService;
 import org.springframework.stereotype.Service;
 
 @Service

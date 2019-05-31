@@ -8,9 +8,9 @@ import java.util.Random;
 
 public class UserIdUtil {
 
-    public static String createUserId(String name) {
-        Random random = new Random();
-        String id = String.format("%04d", random.nextInt(10000));
-        return name.substring(0, 4).toUpperCase() + id;
-    }
+	public static String createUserId(String name) {
+		Random random = new Random();
+		String id = String.format("%04d", random.nextInt(10000));
+		return name.substring(0, 4).toUpperCase() + id;
+	}
 }

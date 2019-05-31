@@ -8,85 +8,88 @@ import javax.persistence.Id;
 @Entity
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    private String firstName, lastName, userId, phNo, emailId, password;
+	private String firstName;
 
-    private Integer roleId;
+	private String lastName;
 
-    public Integer getId() {
-        return id;
-    }
+	private String userId;
 
-    public String getFirstName() {
-        return firstName;
-    }
+	private String phNo;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	private String emailId;
 
-    public String getLastName() {
-        return lastName;
-    }
+	private String password;
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	private Integer roleId;
 
-    public String getUserId() {
-        return userId;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public String getPhNo() {
-        return phNo;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public void setPhNo(String phNo) {
-        this.phNo = phNo;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public String getEmailId() {
-        return emailId;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
-    }
+	public String getUserId() {
+		return userId;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getPhNo() {
+		return phNo;
+	}
 
-    public Integer getRoleId() {
-        return roleId;
-    }
+	public void setPhNo(String phNo) {
+		this.phNo = phNo;
+	}
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
-    }
+	public String getEmailId() {
+		return emailId;
+	}
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", userId='" + userId + '\'' +
-                ", phNo='" + phNo + '\'' +
-                ", emailId='" + emailId + '\'' +
-                ", password='" + password + '\'' +
-                ", roleId=" + roleId +
-                '}';
-    }
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Integer getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
+
+	@Override
+	public String toString() {
+		return "User{" + "id=" + id + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\''
+				+ ", userId='" + userId + '\'' + ", phNo='" + phNo + '\'' + ", emailId='" + emailId + '\''
+				+ ", password='" + password + '\'' + ", roleId=" + roleId + '}';
+	}
 }
