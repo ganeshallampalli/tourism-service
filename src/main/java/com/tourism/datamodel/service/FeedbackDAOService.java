@@ -1,7 +1,7 @@
 package com.tourism.datamodel.service;
 
-import com.tourism.model.FeedBackResponse;
-import com.tourism.model.FeedBackRequest;
+import com.tourism.model.FeedBackRequestResponse.FeedBackRequest;
+import com.tourism.model.FeedBackRequestResponse.FeedBackResponse;
 
 public interface FeedbackDAOService {
 

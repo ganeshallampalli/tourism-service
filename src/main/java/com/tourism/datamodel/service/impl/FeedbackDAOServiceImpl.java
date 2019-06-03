@@ -1,12 +1,13 @@
 package com.tourism.datamodel.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.tourism.datamodel.Feedback;
 import com.tourism.datamodel.repository.FeedbackRepostory;
 import com.tourism.datamodel.service.FeedbackDAOService;
-import com.tourism.model.FeedBackResponse;
-import com.tourism.model.FeedBackRequest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.tourism.model.FeedBackRequestResponse.FeedBackRequest;
+import com.tourism.model.FeedBackRequestResponse.FeedBackResponse;
 
 @Service
 public class FeedbackDAOServiceImpl implements FeedbackDAOService {

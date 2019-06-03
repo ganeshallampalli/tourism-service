@@ -1,17 +1,21 @@
 package com.tourism.datamodel.service.impl;
 
-import com.tourism.datamodel.service.UserDAOService;
-import com.tourism.datamodel.Role;
-import com.tourism.datamodel.User;
-import com.tourism.datamodel.repository.RoleRepository;
-import com.tourism.datamodel.repository.UserRepository;
-import com.tourism.model.*;
-import com.tourism.util.EncryptionUtil;
-import com.tourism.util.UserIdUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.tourism.datamodel.Role;
+import com.tourism.datamodel.User;
+import com.tourism.datamodel.repository.RoleRepository;
+import com.tourism.datamodel.repository.UserRepository;
+import com.tourism.datamodel.service.UserDAOService;
+import com.tourism.model.LoginUserRequestResponse.LoginUserRequest;
+import com.tourism.model.LoginUserRequestResponse.LoginUserResponse;
+import com.tourism.model.RegisterUserRequestResponse.RegisterUserRequest;
+import com.tourism.model.RegisterUserRequestResponse.RegisterUserResponse;
+import com.tourism.util.EncryptionUtil;
+import com.tourism.util.UserIdUtil;
 
 @Service
 public class UserDAOServiceImpl implements UserDAOService {
