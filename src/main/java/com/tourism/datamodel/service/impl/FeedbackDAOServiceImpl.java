@@ -32,7 +32,7 @@ public class FeedbackDAOServiceImpl implements FeedbackDAOService {
 				feedBackResponse.setMessage("Unexpected Error Occurred, Please try again");
 			} else {
 				feedBackResponse.setCode("200");
-				feedBackResponse.setMessage("Saved Successfully");
+				feedBackResponse.setMessage("Thanks for your valuable feed back");
 			}
 		} catch (Exception e) {
 			feedBackResponse.setCode("1006");

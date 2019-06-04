@@ -57,7 +57,7 @@ public class TourismController {
 		return userDAOService.createUser(registerUserRequest);
 	}
 
-	@PostMapping("/v1/submitFeedBack")
+	@PostMapping("/v1/feedback")
 	@ResponseBody
 	@ApiOperation(value = "Submit FeedBack API", response = FeedBackResponse.class)
 	@ApiResponses({ @ApiResponse(code = 200, message = "Saved Successfully"),
@@ -66,7 +66,7 @@ public class TourismController {
 		return feedbackDAOService.submitFeedback(feedBackRequest);
 	}
 
-	@PostMapping("v1/createCruise")
+	@PostMapping("v1/cruise")
 	@ApiOperation(value = "Create Cruise", response = CreateCruiseResponse.class)
 	@ApiResponses({ @ApiResponse(code = 200, message = "Saved Successfully"),
 			@ApiResponse(code = 404, message = "API Not Found") })

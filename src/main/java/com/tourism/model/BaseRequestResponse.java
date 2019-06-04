@@ -13,9 +13,7 @@ public interface BaseRequestResponse {
 	}
 
 	/**
-	 * 
 	 * Basic Response Response of all Response models.
-	 *
 	 */
 	public class BaseResponse {
 
