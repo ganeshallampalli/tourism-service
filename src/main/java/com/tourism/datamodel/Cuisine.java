@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Cruise {
+public class Cuisine {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +17,8 @@ public class Cruise {
 	private String description;
 
 	private String image;
+
+	private Double cost;
 
 	public Integer getId() {
 		return id;
@@ -50,9 +52,18 @@ public class Cruise {
 		this.image = image;
 	}
 
+	public Double getCost() {
+		return cost;
+	}
+
+	public void setCost(Double cost) {
+		this.cost = cost;
+	}
+
 	@Override
 	public String toString() {
-		return "Cruise [id=" + id + ", name=" + name + ", description=" + description + ", image=" + image + "]";
+		return "Cuisine [id=" + id + ", name=" + name + ", description=" + description + ", image=" + image + ", cost="
+				+ cost + "]";
 	}
 
 }

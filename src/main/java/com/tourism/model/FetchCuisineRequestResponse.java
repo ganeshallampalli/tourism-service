@@ -4,27 +4,27 @@ import java.util.List;
 
 import com.tourism.model.BaseRequestResponse.BaseResponse;
 
-public interface FetchCruiseRequestResponse {
+public interface FetchCuisineRequestResponse {
 
-	public class FetchCruiseResponse extends BaseResponse {
+	public class FetchCuisineResponse extends BaseResponse {
 
-		private List<CruiseResponse> cruises;
+		private List<CuisineRespone> cuisines;
 
-		public List<CruiseResponse> getCruises() {
-			return cruises;
+		public List<CuisineRespone> getCuisines() {
+			return cuisines;
 		}
 
-		public void setCruises(List<CruiseResponse> cruises) {
-			this.cruises = cruises;
+		public void setCuisines(List<CuisineRespone> cuisines) {
+			this.cuisines = cuisines;
 		}
 
 		@Override
 		public String toString() {
-			return "CruiseResponse [cruises=" + cruises + "]";
+			return "FetchCuisineResponse [cuisines=" + cuisines + "]";
 		}
 	}
 
-	public class CruiseResponse {
+	public class CuisineRespone {
 
 		private Integer id;
 
@@ -33,6 +33,8 @@ public interface FetchCruiseRequestResponse {
 		private String description;
 
 		private String encodedImage;
+
+		private Double cost;
 
 		public Integer getId() {
 			return id;
@@ -66,10 +68,19 @@ public interface FetchCruiseRequestResponse {
 			this.encodedImage = encodedImage;
 		}
 
+		public Double getCost() {
+			return cost;
+		}
+
+		public void setCost(Double cost) {
+			this.cost = cost;
+		}
+
 		@Override
 		public String toString() {
-			return "Cruise [id=" + id + ", name=" + name + ", description=" + description + ", encodedImage="
-					+ encodedImage + "]";
+			return "CuisineResponse [id=" + id + ", name=" + name + ", description=" + description + ", encodedImage="
+					+ encodedImage + ", cost=" + cost + "]";
 		}
+
 	}
 }

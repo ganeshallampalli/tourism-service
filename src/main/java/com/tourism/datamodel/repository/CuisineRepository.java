@@ -5,26 +5,26 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.tourism.datamodel.Cruise;
+import com.tourism.datamodel.Cuisine;
 
 @Repository
-public interface CruiseRepository extends CrudRepository<Cruise, Integer> {
+public interface CuisineRepository extends CrudRepository<Cuisine, Integer> {
 
 	/**
 	 * Save Cruise
 	 * 
 	 * @param cruise
-	 * @return {@link Cruise}
+	 * @return {@link Cuisine}
 	 */
 	@SuppressWarnings("unchecked")
-	Cruise save(Cruise cruise);
+	Cuisine save(Cuisine cuisine);
 
 	/**
 	 * Fetch all cruises
 	 * 
-	 * @return {@link List}<{@link Cruise}>
+	 * @return {@link List}<{@link Cuisine}>
 	 */
-	List<Cruise> findAll();
+	List<Cuisine> findAll();
 
-	Cruise findAllById(Integer id);
+	Cuisine findAllById(Integer id);
 }

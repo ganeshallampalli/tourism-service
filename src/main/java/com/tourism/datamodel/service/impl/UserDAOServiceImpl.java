@@ -14,6 +14,7 @@ import com.tourism.model.LoginUserRequestResponse.LoginUserRequest;
 import com.tourism.model.LoginUserRequestResponse.LoginUserResponse;
 import com.tourism.model.RegisterUserRequestResponse.RegisterUserRequest;
 import com.tourism.model.RegisterUserRequestResponse.RegisterUserResponse;
+import com.tourism.util.CustomExecption.PasswordException;
 import com.tourism.util.EncryptionUtil;
 import com.tourism.util.UserIdUtil;
 
@@ -79,9 +80,10 @@ public class UserDAOServiceImpl implements UserDAOService {
 			try {
 				String encryptLoginPassword = EncryptionUtil.encrpyt(password);
 				if (user.getPassword().equals(encryptLoginPassword)) {
-					loginUserResponse.setUserName(user.getFirstName() + user.getLastName());
+					loginUserResponse.setUserName(user.getFirstName() + " " + user.getLastName());
 					loginUserResponse.setEmailId(emailId);
 					loginUserResponse.setUserId(user.getUserId());
+					loginUserResponse.setRole(roleRepository.findAllById(user.getRoleId()).getRoleType());
 					loginUserResponse.setCode("200");
 					loginUserResponse.setMessage("Login Successful");
 				} else {
@@ -89,8 +91,8 @@ public class UserDAOServiceImpl implements UserDAOService {
 					loginUserResponse.setMessage("Invalid Username or Password");
 				}
 
-			} catch (Exception e) {
-				LOGGER.debug("Password Encryption Error");
+			} catch (PasswordException e) {
+				LOGGER.debug("{}", e.getMessage());
 			}
 		} else {
 			loginUserResponse.setCode("1004");

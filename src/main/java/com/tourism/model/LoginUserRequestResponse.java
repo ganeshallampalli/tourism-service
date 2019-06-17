@@ -35,6 +35,8 @@ public interface LoginUserRequestResponse {
 
 		private String userId;
 
+		private String role;
+
 		public String getEmailId() {
 			return emailId;
 		}
@@ -57,6 +59,14 @@ public interface LoginUserRequestResponse {
 
 		public void setUserId(String userId) {
 			this.userId = userId;
+		}
+
+		public String getRole() {
+			return role;
+		}
+
+		public void setRole(String role) {
+			this.role = role;
 		}
 	}
 }

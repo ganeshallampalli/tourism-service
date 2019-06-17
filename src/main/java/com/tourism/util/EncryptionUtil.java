@@ -3,6 +3,8 @@ package com.tourism.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import com.tourism.util.CustomExecption.PasswordException;
+
 /**
  * Util to encrypt and decrypt using SHA-512 Hashing algorithm
  */
@@ -14,8 +16,9 @@ public class EncryptionUtil {
 	 *
 	 * @param stringToEncrypt
 	 * @return
+	 * @throws PasswordException
 	 */
-	public static String encrpyt(String stringToEncrypt) throws Exception {
+	public static String encrpyt(String stringToEncrypt) throws PasswordException {
 
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-512");
@@ -27,7 +30,7 @@ public class EncryptionUtil {
 			}
 			return new String(sb);
 		} catch (NoSuchAlgorithmException e) {
-			throw new Exception("Error in encrypting");
+			throw new PasswordException("Password Encryption Error.");
 		}
 	}
 

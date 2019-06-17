@@ -3,9 +3,9 @@ package com.tourism.model;
 import com.tourism.model.BaseRequestResponse.BaseRequest;
 import com.tourism.model.BaseRequestResponse.BaseResponse;
 
-public interface CreateCruiseRequestResponse {
+public interface CreateCuisineRequestResponse {
 
-	public class CreateCruiseRequest extends BaseRequest {
+	public class CreateCuisineRequest extends BaseRequest {
 
 		private Integer id;
 
@@ -14,6 +14,8 @@ public interface CreateCruiseRequestResponse {
 		private String description;
 
 		private String encodedImage;
+
+		private Double cost;
 
 		public Integer getId() {
 			return id;
@@ -47,14 +49,23 @@ public interface CreateCruiseRequestResponse {
 			this.encodedImage = encodedImage;
 		}
 
+		public Double getCost() {
+			return cost;
+		}
+
+		public void setCost(Double cost) {
+			this.cost = cost;
+		}
+
 		@Override
 		public String toString() {
-			return "CreateCruiseRequest [id=" + id + ", name=" + name + ", description=" + description
-					+ ", encodedImage=" + encodedImage + "]";
+			return "CreateCuisineRequest [id=" + id + ", name=" + name + ", description=" + description
+					+ ", encodedImage=" + encodedImage + ", cost=" + cost + "]";
 		}
+
 	}
 
-	public class CreateCruiseResponse extends BaseResponse {
+	public class CreateCuisineResponse extends BaseResponse {
 
 		private Integer id;
 
@@ -63,6 +74,8 @@ public interface CreateCruiseRequestResponse {
 		private String description;
 
 		private String encodedImage;
+
+		private Double cost;
 
 		public Integer getId() {
 			return id;
@@ -96,11 +109,20 @@ public interface CreateCruiseRequestResponse {
 			this.encodedImage = encodedImage;
 		}
 
+		public Double getCost() {
+			return cost;
+		}
+
+		public void setCost(Double cost) {
+			this.cost = cost;
+		}
+
 		@Override
 		public String toString() {
-			return "CreateCruiseResponse [id=" + id + ", name=" + name + ", description=" + description
-					+ ", encodedImage=" + encodedImage + "]";
+			return "CreateCuisineResponse [id=" + id + ", name=" + name + ", description=" + description
+					+ ", encodedImage=" + encodedImage + ", cost=" + cost + "]";
 		}
+
 	}
 
 }
