@@ -30,6 +30,7 @@ import com.tourism.model.FetchCruiseRequestResponse.FetchCruiseResponse;
 import com.tourism.model.FetchCuisineRequestResponse.FetchCuisineResponse;
 import com.tourism.model.FetchFeedBackRequestResponse.FetchFeedBackResponse;
 import com.tourism.model.FetchThingsToDoRequestResponse.FetchThingsToDoResponse;
+import com.tourism.model.FetchUsersRequestResponse.FetchUsersResponse;
 import com.tourism.model.LoginUserRequestResponse.LoginUserRequest;
 import com.tourism.model.LoginUserRequestResponse.LoginUserResponse;
 import com.tourism.model.RegisterUserRequestResponse.RegisterUserRequest;
@@ -150,7 +151,7 @@ public class TourismController {
 	public DeleteCruiseResponse deleteCruise(@PathVariable("id") Integer id) {
 		return cruiseDAOService.deleteCruise(id);
 	}
-	
+
 	@DeleteMapping("v1/cuisine/{id}")
 	@ApiOperation(value = "Delete cruise", response = DeleteCuisineResponse.class)
 	@ApiResponses({ @ApiResponse(code = 200, message = "Deleted Successfully"),
@@ -158,12 +159,20 @@ public class TourismController {
 	public DeleteCuisineResponse deleteCuisine(@PathVariable("id") Integer id) {
 		return cuisineDAOService.deleteCuisine(id);
 	}
-	
+
 	@DeleteMapping("v1/thingsToDo/{id}")
 	@ApiOperation(value = "Delete cruise", response = DeleteThingsToDoResponse.class)
 	@ApiResponses({ @ApiResponse(code = 200, message = "Deleted Successfully"),
 			@ApiResponse(code = 404, message = "API Not Found") })
 	public DeleteThingsToDoResponse deleteThingsToDo(@PathVariable("id") Integer id) {
 		return thingsToDoDAOService.deleteThingsToDo(id);
+	}
+
+	@GetMapping("v1/users")
+	@ApiOperation(value = "Retrieve all users", response = DeleteThingsToDoResponse.class)
+	@ApiResponses({ @ApiResponse(code = 200, message = "Fetched Successfully"),
+			@ApiResponse(code = 404, message = "API Not Found") })
+	public FetchUsersResponse fetchAllUsers() {
+		return userDAOService.fetchAllUsers();
 	}
 }

@@ -33,6 +33,7 @@ public class CruiseDAOServiceImpl implements CruiseDAOService {
 				cruiseResponse.setEncodedImage(cruise.getImage());
 				cruiseResponse.setName(cruise.getName());
 				cruiseResponse.setId(cruise.getId());
+				cruiseResponse.setAdditionalLink(cruise.getAdditionalLink());
 				cruiseResponses.add(cruiseResponse);
 			});
 			fetchCruiseResponse.setCruises(cruiseResponses);
@@ -53,6 +54,7 @@ public class CruiseDAOServiceImpl implements CruiseDAOService {
 			cruise.setName(createCruiseRequest.getName());
 			cruise.setDescription(createCruiseRequest.getDescription());
 			cruise.setImage(createCruiseRequest.getEncodedImage());
+			cruise.setAdditionalLink(createCruiseRequest.getAdditionalLink());
 
 			try {
 				Cruise savedCruise = cruiseRepository.save(cruise);
@@ -73,6 +75,7 @@ public class CruiseDAOServiceImpl implements CruiseDAOService {
 			editCruise.setDescription(createCruiseRequest.getDescription());
 			editCruise.setImage(createCruiseRequest.getEncodedImage());
 			editCruise.setName(createCruiseRequest.getName());
+			editCruise.setAdditionalLink(createCruiseRequest.getAdditionalLink());
 			try {
 				cruiseRepository.save(editCruise);
 				createCruiseResponse.setCode("200");

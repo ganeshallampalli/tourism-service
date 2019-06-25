@@ -20,6 +20,8 @@ public class ThingsToDo {
 
 	private Double timeSpent;
 
+	private String additionalLink;
+
 	public Integer getId() {
 		return id;
 	}
@@ -60,10 +62,18 @@ public class ThingsToDo {
 		this.timeSpent = timeSpent;
 	}
 
+	public String getAdditionalLink() {
+		return additionalLink;
+	}
+
+	public void setAdditionalLink(String additionalLink) {
+		this.additionalLink = additionalLink;
+	}
+
 	@Override
 	public String toString() {
 		return "ThingsToDo [id=" + id + ", name=" + name + ", description=" + description + ", image=" + image
-				+ ", timeSpent=" + timeSpent + "]";
+				+ ", timeSpent=" + timeSpent + ", additionalLink=" + additionalLink + "]";
 	}
 
 }

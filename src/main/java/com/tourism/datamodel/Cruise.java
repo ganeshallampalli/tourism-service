@@ -18,6 +18,8 @@ public class Cruise {
 
 	private String image;
 
+	private String additionalLink;
+
 	public Integer getId() {
 		return id;
 	}
@@ -50,9 +52,18 @@ public class Cruise {
 		this.image = image;
 	}
 
+	public String getAdditionalLink() {
+		return additionalLink;
+	}
+
+	public void setAdditionalLink(String additionalLink) {
+		this.additionalLink = additionalLink;
+	}
+
 	@Override
 	public String toString() {
-		return "Cruise [id=" + id + ", name=" + name + ", description=" + description + ", image=" + image + "]";
+		return "Cruise [id=" + id + ", name=" + name + ", description=" + description + ", image=" + image
+				+ ", additionalLink=" + additionalLink + "]";
 	}
 
 }

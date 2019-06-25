@@ -24,25 +24,43 @@ public class ThingsToDoDAOServiceImpl implements ThingsToDoDAOService {
 	@Override
 	public CreateThingsToDoResponse saveThingsToDo(CreateThingsToDoRequest createThingsToDoRequest) {
 		CreateThingsToDoResponse createThingsToDoResponse = new CreateThingsToDoResponse();
-		ThingsToDo thingsToDo = new ThingsToDo();
-		thingsToDo.setName(createThingsToDoRequest.getName());
-		thingsToDo.setDescription(createThingsToDoRequest.getDescription());
-		thingsToDo.setImage(createThingsToDoRequest.getEncodedImage());
-		thingsToDo.setTimeSpent(createThingsToDoRequest.getAvgTimeSpent());
+		if (null == createThingsToDoRequest.getId()) {
+			ThingsToDo thingsToDo = new ThingsToDo();
+			thingsToDo.setName(createThingsToDoRequest.getName());
+			thingsToDo.setDescription(createThingsToDoRequest.getDescription());
+			thingsToDo.setImage(createThingsToDoRequest.getEncodedImage());
+			thingsToDo.setTimeSpent(createThingsToDoRequest.getAvgTimeSpent());
+			thingsToDo.setAdditionalLink(createThingsToDoRequest.getAdditionalLink());
 
-		try {
-			ThingsToDo savedThingsToDo = thingsToDoRepository.save(thingsToDo);
-			if (null == savedThingsToDo) {
-				createThingsToDoResponse.setCode("2007");
-				createThingsToDoResponse.setMessage("Unexpected Error Occurred, Please try again");
-			} else {
-				createThingsToDoResponse.setCode("200");
-				createThingsToDoResponse.setMessage("Cuisine Saved Successfully");
+			try {
+				ThingsToDo savedThingsToDo = thingsToDoRepository.save(thingsToDo);
+				if (null == savedThingsToDo) {
+					createThingsToDoResponse.setCode("2007");
+					createThingsToDoResponse.setMessage("Unexpected Error Occurred, Please try again");
+				} else {
+					createThingsToDoResponse.setCode("200");
+					createThingsToDoResponse.setMessage("Things To Do Saved Successfully");
+				}
+			} catch (Exception e) {
+				createThingsToDoResponse.setCode("2008");
+				createThingsToDoResponse
+						.setMessage("It seems that there is an issue while saving the data. Please try again");
 			}
-		} catch (Exception e) {
-			createThingsToDoResponse.setCode("2008");
-			createThingsToDoResponse
-					.setMessage("It seems that there is an issue while saving the data. Please try again");
+		} else {
+			ThingsToDo editThingsToDo = thingsToDoRepository.findAllById(createThingsToDoRequest.getId());
+			editThingsToDo.setDescription(createThingsToDoRequest.getDescription());
+			editThingsToDo.setImage(createThingsToDoRequest.getEncodedImage());
+			editThingsToDo.setName(createThingsToDoRequest.getName());
+			editThingsToDo.setAdditionalLink(createThingsToDoRequest.getAdditionalLink());
+			try {
+				thingsToDoRepository.save(editThingsToDo);
+				createThingsToDoResponse.setCode("200");
+				createThingsToDoResponse.setMessage("Edited Things to Do successfully");
+			} catch (Exception e) {
+				createThingsToDoResponse.setCode("2022");
+				createThingsToDoResponse
+						.setMessage("It seems that there is an issue while saving the data. Please try again");
+			}
 		}
 		return createThingsToDoResponse;
 	}
@@ -50,19 +68,20 @@ public class ThingsToDoDAOServiceImpl implements ThingsToDoDAOService {
 	@Override
 	public FetchThingsToDoResponse getAllThingsToDo() {
 		FetchThingsToDoResponse fetchThingsToDoResponse = new FetchThingsToDoResponse();
-		List<ThingsToDoResponse> thingsToDoResonses = new ArrayList<>();
+		List<ThingsToDoResponse> thingsToDoResponses = new ArrayList<>();
 		try {
 			List<ThingsToDo> dbCuisines = thingsToDoRepository.findAll();
 			dbCuisines.stream().forEach(thingsToDo -> {
-				ThingsToDoResponse cuisineResponse = new ThingsToDoResponse();
-				cuisineResponse.setDescription(thingsToDo.getDescription());
-				cuisineResponse.setEncodedImage(thingsToDo.getImage());
-				cuisineResponse.setName(thingsToDo.getName());
-				cuisineResponse.setId(thingsToDo.getId());
-				cuisineResponse.setTimeSpent(thingsToDo.getTimeSpent());
-				thingsToDoResonses.add(cuisineResponse);
+				ThingsToDoResponse thingsToDoResponse = new ThingsToDoResponse();
+				thingsToDoResponse.setDescription(thingsToDo.getDescription());
+				thingsToDoResponse.setEncodedImage(thingsToDo.getImage());
+				thingsToDoResponse.setName(thingsToDo.getName());
+				thingsToDoResponse.setId(thingsToDo.getId());
+				thingsToDoResponse.setAvgTimeSpent(thingsToDo.getTimeSpent());
+				thingsToDoResponse.setAdditionalLink(thingsToDo.getAdditionalLink());
+				thingsToDoResponses.add(thingsToDoResponse);
 			});
-			fetchThingsToDoResponse.setThingsToDo(thingsToDoResonses);
+			fetchThingsToDoResponse.setThingsToDo(thingsToDoResponses);
 			fetchThingsToDoResponse.setCode("200");
 			fetchThingsToDoResponse.setMessage("Fetched successfully");
 		} catch (Exception e) {
@@ -80,7 +99,7 @@ public class ThingsToDoDAOServiceImpl implements ThingsToDoDAOService {
 			ThingsToDo thingsToDo = thingsToDoRepository.findAllById(id);
 			if (null == thingsToDo) {
 				deleteThingsToDoResponse.setCode("2014");
-				deleteThingsToDoResponse.setMessage("Things To DO Item doesn't exits in the system");
+				deleteThingsToDoResponse.setMessage("Things To Do Item doesn't exits in the system");
 			} else {
 				thingsToDoRepository.delete(thingsToDo);
 				deleteThingsToDoResponse.setCode("200");

@@ -35,7 +35,9 @@ public interface FetchThingsToDoRequestResponse {
 
 		private String encodedImage;
 
-		private Double timeSpent;
+		private Double avgTimeSpent;
+
+		private String additionalLink;
 
 		public Integer getId() {
 			return id;
@@ -69,18 +71,27 @@ public interface FetchThingsToDoRequestResponse {
 			this.encodedImage = encodedImage;
 		}
 
-		public Double getTimeSpent() {
-			return timeSpent;
+		public Double getAvgTimeSpent() {
+			return avgTimeSpent;
 		}
 
-		public void setTimeSpent(Double timeSpent) {
-			this.timeSpent = timeSpent;
+		public void setAvgTimeSpent(Double avgTimeSpent) {
+			this.avgTimeSpent = avgTimeSpent;
+		}
+
+		public String getAdditionalLink() {
+			return additionalLink;
+		}
+
+		public void setAdditionalLink(String additionalLink) {
+			this.additionalLink = additionalLink;
 		}
 
 		@Override
 		public String toString() {
 			return "ThingsToDoResponse [id=" + id + ", name=" + name + ", description=" + description
-					+ ", encodedImage=" + encodedImage + ", timeSpent=" + timeSpent + "]";
+					+ ", encodedImage=" + encodedImage + ", avgTimeSpent=" + avgTimeSpent + ", additionalLink="
+					+ additionalLink + "]";
 		}
 
 	}

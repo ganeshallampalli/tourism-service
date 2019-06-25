@@ -17,6 +17,8 @@ public interface CreateCuisineRequestResponse {
 
 		private Double cost;
 
+		private String additionalLink;
+
 		public Integer getId() {
 			return id;
 		}
@@ -55,74 +57,25 @@ public interface CreateCuisineRequestResponse {
 
 		public void setCost(Double cost) {
 			this.cost = cost;
+		}
+
+		public String getAdditionalLink() {
+			return additionalLink;
+		}
+
+		public void setAdditionalLink(String additionalLink) {
+			this.additionalLink = additionalLink;
 		}
 
 		@Override
 		public String toString() {
 			return "CreateCuisineRequest [id=" + id + ", name=" + name + ", description=" + description
-					+ ", encodedImage=" + encodedImage + ", cost=" + cost + "]";
+					+ ", encodedImage=" + encodedImage + ", cost=" + cost + ", additionalLink=" + additionalLink + "]";
 		}
 
 	}
 
 	public class CreateCuisineResponse extends BaseResponse {
-
-		private Integer id;
-
-		private String name;
-
-		private String description;
-
-		private String encodedImage;
-
-		private Double cost;
-
-		public Integer getId() {
-			return id;
-		}
-
-		public void setId(Integer id) {
-			this.id = id;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public void setName(String name) {
-			this.name = name;
-		}
-
-		public String getDescription() {
-			return description;
-		}
-
-		public void setDescription(String description) {
-			this.description = description;
-		}
-
-		public String getEncodedImage() {
-			return encodedImage;
-		}
-
-		public void setEncodedImage(String encodedImage) {
-			this.encodedImage = encodedImage;
-		}
-
-		public Double getCost() {
-			return cost;
-		}
-
-		public void setCost(Double cost) {
-			this.cost = cost;
-		}
-
-		@Override
-		public String toString() {
-			return "CreateCuisineResponse [id=" + id + ", name=" + name + ", description=" + description
-					+ ", encodedImage=" + encodedImage + ", cost=" + cost + "]";
-		}
-
 	}
 
 }

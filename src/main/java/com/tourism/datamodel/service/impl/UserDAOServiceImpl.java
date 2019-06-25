@@ -1,5 +1,8 @@
 package com.tourism.datamodel.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,8 @@ import com.tourism.datamodel.User;
 import com.tourism.datamodel.repository.RoleRepository;
 import com.tourism.datamodel.repository.UserRepository;
 import com.tourism.datamodel.service.UserDAOService;
+import com.tourism.model.FetchUsersRequestResponse.FetchUsersResponse;
+import com.tourism.model.FetchUsersRequestResponse.UserResponse;
 import com.tourism.model.LoginUserRequestResponse.LoginUserRequest;
 import com.tourism.model.LoginUserRequestResponse.LoginUserResponse;
 import com.tourism.model.RegisterUserRequestResponse.RegisterUserRequest;
@@ -20,6 +25,8 @@ import com.tourism.util.UserIdUtil;
 
 @Service
 public class UserDAOServiceImpl implements UserDAOService {
+
+	private static final String USER_ROLE = "USER";
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserDAOServiceImpl.class);
 
@@ -102,4 +109,38 @@ public class UserDAOServiceImpl implements UserDAOService {
 
 		return loginUserResponse;
 	}
+
+	@Override
+	public FetchUsersResponse fetchAllUsers() {
+		FetchUsersResponse fetchUsersResponse = new FetchUsersResponse();
+		List<UserResponse> userList = new ArrayList<>();
+		Role role = roleRepository.findByRoleType(USER_ROLE);
+
+		try {
+			List<User> users = userRepository.findAllByRoleId(role.getId());
+			if (!users.isEmpty()) {
+				users.stream().forEach(user -> {
+					UserResponse userResponse = new UserResponse();
+					userResponse.setId(user.getId());
+					userResponse.setUserId(user.getUserId());
+					userResponse.setUserName(user.getFirstName() + " " + user.getLastName());
+					userResponse.setPhNo(user.getPhNo());
+					userResponse.setEmail(user.getEmailId());
+					userList.add(userResponse);
+				});
+				fetchUsersResponse.setUsers(userList);
+				fetchUsersResponse.setCode("200");
+				fetchUsersResponse.setMessage("Successfully fetched all users");
+			} else {
+				fetchUsersResponse.setCode("2020");
+				fetchUsersResponse.setMessage("No users registered. Sit back and relax while users register");
+			}
+		} catch (Exception e) {
+			fetchUsersResponse.setCode("2019");
+			fetchUsersResponse.setMessage("It seems that there is an issue while fetching the data. Please try again");
+		}
+
+		return fetchUsersResponse;
+	}
+
 }

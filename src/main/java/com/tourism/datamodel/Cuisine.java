@@ -20,6 +20,8 @@ public class Cuisine {
 
 	private Double cost;
 
+	private String additionalLink;
+
 	public Integer getId() {
 		return id;
 	}
@@ -60,10 +62,18 @@ public class Cuisine {
 		this.cost = cost;
 	}
 
+	public String getAdditionalLink() {
+		return additionalLink;
+	}
+
+	public void setAdditionalLink(String additionalLink) {
+		this.additionalLink = additionalLink;
+	}
+
 	@Override
 	public String toString() {
 		return "Cuisine [id=" + id + ", name=" + name + ", description=" + description + ", image=" + image + ", cost="
-				+ cost + "]";
+				+ cost + ", additionalLink=" + additionalLink + "]";
 	}
 
 }

@@ -36,6 +36,8 @@ public interface FetchCuisineRequestResponse {
 
 		private Double cost;
 
+		private String additionalLink;
+
 		public Integer getId() {
 			return id;
 		}
@@ -76,10 +78,18 @@ public interface FetchCuisineRequestResponse {
 			this.cost = cost;
 		}
 
+		public String getAdditionalLink() {
+			return additionalLink;
+		}
+
+		public void setAdditionalLink(String additionalLink) {
+			this.additionalLink = additionalLink;
+		}
+
 		@Override
 		public String toString() {
-			return "CuisineResponse [id=" + id + ", name=" + name + ", description=" + description + ", encodedImage="
-					+ encodedImage + ", cost=" + cost + "]";
+			return "CuisineRespone [id=" + id + ", name=" + name + ", description=" + description + ", encodedImage="
+					+ encodedImage + ", cost=" + cost + ", additionalLink=" + additionalLink + "]";
 		}
 
 	}

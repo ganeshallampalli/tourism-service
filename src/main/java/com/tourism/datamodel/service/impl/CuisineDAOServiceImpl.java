@@ -24,24 +24,43 @@ public class CuisineDAOServiceImpl implements CuisineDAOService {
 	@Override
 	public CreateCuisineResponse saveCuisine(CreateCuisineRequest createCuisineRequest) {
 		CreateCuisineResponse createCuisineResponse = new CreateCuisineResponse();
-		Cuisine cuisine = new Cuisine();
-		cuisine.setName(createCuisineRequest.getName());
-		cuisine.setDescription(createCuisineRequest.getDescription());
-		cuisine.setImage(createCuisineRequest.getEncodedImage());
-		cuisine.setCost(createCuisineRequest.getCost());
+		if (null == createCuisineRequest.getId()) {
+			Cuisine cuisine = new Cuisine();
+			cuisine.setName(createCuisineRequest.getName());
+			cuisine.setDescription(createCuisineRequest.getDescription());
+			cuisine.setImage(createCuisineRequest.getEncodedImage());
+			cuisine.setCost(createCuisineRequest.getCost());
+			cuisine.setAdditionalLink(createCuisineRequest.getAdditionalLink());
 
-		try {
-			Cuisine savedCuisine = cuisineRepository.save(cuisine);
-			if (null == savedCuisine) {
-				createCuisineResponse.setCode("2004");
-				createCuisineResponse.setMessage("Unexpected Error Occurred, Please try again");
-			} else {
-				createCuisineResponse.setCode("200");
-				createCuisineResponse.setMessage("Cuisine Saved Successfully");
+			try {
+				Cuisine savedCuisine = cuisineRepository.save(cuisine);
+				if (null == savedCuisine) {
+					createCuisineResponse.setCode("2004");
+					createCuisineResponse.setMessage("Unexpected Error Occurred, Please try again");
+				} else {
+					createCuisineResponse.setCode("200");
+					createCuisineResponse.setMessage("Cuisine Saved Successfully");
+				}
+			} catch (Exception e) {
+				createCuisineResponse.setCode("2005");
+				createCuisineResponse
+						.setMessage("It seems that there is an issue while saving the data. Please try again");
 			}
-		} catch (Exception e) {
-			createCuisineResponse.setCode("2005");
-			createCuisineResponse.setMessage("It seems that there is an issue while saving the data. Please try again");
+		} else {
+			Cuisine editCuisine = cuisineRepository.findAllById(createCuisineRequest.getId());
+			editCuisine.setDescription(createCuisineRequest.getDescription());
+			editCuisine.setImage(createCuisineRequest.getEncodedImage());
+			editCuisine.setName(createCuisineRequest.getName());
+			editCuisine.setAdditionalLink(createCuisineRequest.getAdditionalLink());
+			try {
+				cuisineRepository.save(editCuisine);
+				createCuisineResponse.setCode("200");
+				createCuisineResponse.setMessage("Edited Cruise successfully");
+			} catch (Exception e) {
+				createCuisineResponse.setCode("2021");
+				createCuisineResponse
+						.setMessage("It seems that there is an issue while saving the data. Please try again");
+			}
 		}
 		return createCuisineResponse;
 	}
@@ -59,6 +78,7 @@ public class CuisineDAOServiceImpl implements CuisineDAOService {
 				cuisineResponse.setName(cuisine.getName());
 				cuisineResponse.setId(cuisine.getId());
 				cuisineResponse.setCost(cuisine.getCost());
+				cuisineResponse.setAdditionalLink(cuisine.getAdditionalLink());
 				cuisineResponses.add(cuisineResponse);
 			});
 			fetchCuisineResponse.setCuisines(cuisineResponses);

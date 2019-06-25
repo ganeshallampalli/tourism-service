@@ -6,10 +6,8 @@ import com.tourism.model.BaseRequestResponse.BaseResponse;
 public interface DeleteCuisineRequestResponse {
 
 	public class DeleteCuisineRequest extends BaseRequest {
-
 	}
 
 	public class DeleteCuisineResponse extends BaseResponse {
-
 	}
 }

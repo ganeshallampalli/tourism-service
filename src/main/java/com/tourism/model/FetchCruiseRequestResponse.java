@@ -34,6 +34,8 @@ public interface FetchCruiseRequestResponse {
 
 		private String encodedImage;
 
+		private String additionalLink;
+
 		public Integer getId() {
 			return id;
 		}
@@ -66,10 +68,19 @@ public interface FetchCruiseRequestResponse {
 			this.encodedImage = encodedImage;
 		}
 
+		public String getAdditionalLink() {
+			return additionalLink;
+		}
+
+		public void setAdditionalLink(String additionalLink) {
+			this.additionalLink = additionalLink;
+		}
+
 		@Override
 		public String toString() {
-			return "Cruise [id=" + id + ", name=" + name + ", description=" + description + ", encodedImage="
-					+ encodedImage + "]";
+			return "CruiseResponse [id=" + id + ", name=" + name + ", description=" + description + ", encodedImage="
+					+ encodedImage + ", additionalLink=" + additionalLink + "]";
 		}
+
 	}
 }
