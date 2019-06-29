@@ -19,7 +19,7 @@ logging:
 #    /heroku_ef87f5e491f608a?reconnect=true??
 spring:
   datasource:
-    url: mysql://:us-cdbr-iron-east-02.cleardb.net/tourism
+    url: mysql://:us-cdbr-iron-east-02.cleardb.net/heroku_ef87f5e491f608a
     username: b92721fe7676ea
     password: 13ddb0dd   
 
