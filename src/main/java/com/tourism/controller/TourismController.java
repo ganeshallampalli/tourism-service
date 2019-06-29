@@ -42,7 +42,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@CrossOrigin(origins = "https://ganeshallampalli.github.io/tourism-ui", maxAge = 3600)
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
 @Api(value = "Api's for Tourism")
