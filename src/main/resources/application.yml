@@ -1,3 +1,4 @@
+
 server:
   servlet:
     context-path: /tourism
@@ -9,9 +10,16 @@ logging:
   level:
     com.tourism: DEBUG
     org.hibernate.SQL: DEBUG
+#spring:
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/tourism
+#    username: root
+#    password: Villa#25
+    
+#    /heroku_ef87f5e491f608a?reconnect=true??
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/tourism
-    username: root
-    password: Villa#25
+    url: mysql://:us-cdbr-iron-east-02.cleardb.net/heroku_ef87f5e491f608a
+    username: b92721fe7676ea
+    password: 13ddb0dd   
 
