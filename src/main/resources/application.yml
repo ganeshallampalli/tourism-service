@@ -11,7 +11,7 @@ logging:
     org.hibernate.SQL: DEBUG
 spring:
   datasource:
-    url: postgres://ec2-54-83-1-101.compute-1.amazonaws.com:5432/d4b57jg6msou3a
+    url: jdbc:postgres://ec2-54-83-1-101.compute-1.amazonaws.com:5432/d4b57jg6msou3a
     username: bkwxsyvgvneiwr
     password: a571ae8e7313473f485711b7111709071e524137c9d99761b987f4ebdb957b6f 
 
