@@ -18,3 +18,54 @@ The following guides illustrate how to use some features concretely:
 * [Authenticating a User with LDAP](https://spring.io/guides/gs/authenticating-ldap/)
 * [Accessing data with MySQL](https://spring.io/guides/gs/accessing-data-mysql/)
 
+
+
+
+/**
+	 * Converts Excel File into list of rows as Map[ColumnName, CellValue].
+	 * 
+	 * @return
+	 */
+	public List<Map<String, String>> convertExcelToHashMap(String filePath) {
+
+		Map<String, String> dataMap = new HashMap<>();
+		List<Map<String, String>> excelRowValues = new ArrayList<>();
+		try {
+			FileInputStream file = new FileInputStream(filePath);
+			XSSFWorkbook workbook = new XSSFWorkbook(file);
+			String key;
+			String value;
+			Sheet sheet = workbook.getSheetAt(0);
+			Iterator<Row> it = sheet.rowIterator();
+
+			// Header row of the excel sheet
+			Row headerRow = it.next();
+
+			while (it.hasNext()) {
+				Row row = it.next();
+				for (int i = 0; i < headerRow.getLastCellNum(); i++) {
+					if ((null != row.getCell(i)) && (row.getCell(i).getCellTypeEnum() == CellType.NUMERIC)) {
+						if (DateUtil.isCellDateFormatted(row.getCell(i))) {
+							DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+							value = dateFormat.format(row.getCell(i).getDateCellValue()).trim();
+						} else {
+							row.getCell(i).setCellType(CellType.STRING);
+							value = row.getCell(i).toString().trim();
+						}
+						key = headerRow.getCell(i).toString().trim();
+					} else {
+						key = (headerRow.getCell(i) + "".toString()).trim() + "";
+						value = (null != row.getCell(i)) ? (row.getCell(i) + "".toString()).trim() + "" : "";
+					}
+					dataMap.put(key, value);
+				}
+				excelRowValues.add(dataMap);
+				dataMap = new HashMap<>();
+			}
+			LOGGER.debug("{}", excelRowValues);
+			workbook.close();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+		return excelRowValues;
+	}
