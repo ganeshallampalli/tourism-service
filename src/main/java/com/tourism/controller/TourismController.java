@@ -15,6 +15,7 @@ import com.tourism.datamodel.service.CruiseDAOService;
 import com.tourism.datamodel.service.CuisineDAOService;
 import com.tourism.datamodel.service.FeedbackDAOService;
 import com.tourism.datamodel.service.ThingsToDoDAOService;
+import com.tourism.datamodel.service.ToDoDAOService;
 import com.tourism.datamodel.service.UserDAOService;
 import com.tourism.model.CreateCruiseRequestResponse.CreateCruiseRequest;
 import com.tourism.model.CreateCruiseRequestResponse.CreateCruiseResponse;
@@ -22,15 +23,19 @@ import com.tourism.model.CreateCuisineRequestResponse.CreateCuisineRequest;
 import com.tourism.model.CreateCuisineRequestResponse.CreateCuisineResponse;
 import com.tourism.model.CreateThingsToDoRequestResponse.CreateThingsToDoRequest;
 import com.tourism.model.CreateThingsToDoRequestResponse.CreateThingsToDoResponse;
+import com.tourism.model.CreateToDoRequestResponse.CreateToDoRequest;
+import com.tourism.model.CreateToDoRequestResponse.CreateToDoResponse;
 import com.tourism.model.DeleteCruiseRequestResponse.DeleteCruiseResponse;
 import com.tourism.model.DeleteCuisineRequestResponse.DeleteCuisineResponse;
 import com.tourism.model.DeleteThingsToDoRequestResponse.DeleteThingsToDoResponse;
+import com.tourism.model.DeleteToDoRequestResponse.DeleteToDoResponse;
 import com.tourism.model.FeedBackRequestResponse.FeedBackRequest;
 import com.tourism.model.FeedBackRequestResponse.FeedBackResponse;
 import com.tourism.model.FetchCruiseRequestResponse.FetchCruiseResponse;
 import com.tourism.model.FetchCuisineRequestResponse.FetchCuisineResponse;
 import com.tourism.model.FetchFeedBackRequestResponse.FetchFeedBackResponse;
 import com.tourism.model.FetchThingsToDoRequestResponse.FetchThingsToDoResponse;
+import com.tourism.model.FetchToDoRequestResponse.FetchToDoResponse;
 import com.tourism.model.FetchUsersRequestResponse.FetchUsersResponse;
 import com.tourism.model.LoginUserRequestResponse.LoginUserRequest;
 import com.tourism.model.LoginUserRequestResponse.LoginUserResponse;
@@ -63,8 +68,11 @@ public class TourismController {
 	@Autowired
 	private ThingsToDoDAOService thingsToDoDAOService;
 
+	@Autowired
+	private ToDoDAOService toDoDAOService;
+
 	@PostMapping("/v1/login")
-	@ApiOperation(value = "Login User API", response = String.class)
+	@ApiOperation(value = "Login User API", response = LoginUserResponse.class)
 	@ApiResponses({ @ApiResponse(code = 200, message = "Login Successful"),
 			@ApiResponse(code = 404, message = "API Not Found") })
 	public LoginUserResponse login(@RequestBody LoginUserRequest loginUserRequest) {
@@ -106,7 +114,7 @@ public class TourismController {
 	}
 
 	@PostMapping("v1/cuisine")
-	@ApiOperation(value = "Create Cuisine", response = CreateCruiseResponse.class)
+	@ApiOperation(value = "Create Cuisine", response = CreateCuisineResponse.class)
 	@ApiResponses({ @ApiResponse(code = 200, message = "Saved Successfully"),
 			@ApiResponse(code = 404, message = "API Not Found") })
 	public @ResponseBody CreateCuisineResponse createCuisine(@RequestBody CreateCuisineRequest createCuisineRequest) {
@@ -114,7 +122,7 @@ public class TourismController {
 	}
 
 	@GetMapping("v1/cuisine")
-	@ApiOperation(value = "Fetch all Cuisines", response = FetchThingsToDoResponse.class)
+	@ApiOperation(value = "Fetch all Cuisines", response = FetchCuisineResponse.class)
 	@ApiResponses({ @ApiResponse(code = 200, message = "Fetched Successfully"),
 			@ApiResponse(code = 404, message = "API Not Found") })
 	public @ResponseBody FetchCuisineResponse getAllCuisines() {
@@ -122,7 +130,7 @@ public class TourismController {
 	}
 
 	@PostMapping("v1/thingsToDo")
-	@ApiOperation(value = "Create ThingsToDo", response = CreateCruiseResponse.class)
+	@ApiOperation(value = "Create ThingsToDo", response = CreateThingsToDoResponse.class)
 	@ApiResponses({ @ApiResponse(code = 200, message = "Saved Successfully"),
 			@ApiResponse(code = 404, message = "API Not Found") })
 	public @ResponseBody CreateThingsToDoResponse createThingsToDo(
@@ -171,10 +179,37 @@ public class TourismController {
 	}
 
 	@GetMapping("v1/users")
-	@ApiOperation(value = "Retrieve all users", response = DeleteThingsToDoResponse.class)
+	@ApiOperation(value = "Retrieve all users", response = FetchUsersResponse.class)
 	@ApiResponses({ @ApiResponse(code = 200, message = "Fetched Successfully"),
 			@ApiResponse(code = 404, message = "API Not Found") })
 	public FetchUsersResponse fetchAllUsers() {
 		return userDAOService.fetchAllUsers();
 	}
+
+	@PostMapping("v1/toDo")
+	@ApiOperation(value = "Create ToDo", response = CreateToDoResponse.class)
+	@ApiResponses({ @ApiResponse(code = 200, message = "Saved Successfully"),
+			@ApiResponse(code = 404, message = "API Not Found") })
+	public @ResponseBody CreateToDoResponse createThingsToDo(
+
+			@RequestBody CreateToDoRequest createToDoRequest) {
+		return toDoDAOService.saveToDo(createToDoRequest);
+	}
+
+	@GetMapping("v1/toDo")
+	@ApiOperation(value = "Retrieve all toDo's", response = FetchToDoResponse.class)
+	@ApiResponses({ @ApiResponse(code = 200, message = "Fetched Successfully"),
+			@ApiResponse(code = 404, message = "API Not Found") })
+	public FetchToDoResponse fetchAllToDos() {
+		return toDoDAOService.getAllToDo();
+	}
+
+	@DeleteMapping("v1/toDo/{id}")
+	@ApiOperation(value = "Delete ToDo", response = DeleteToDoResponse.class)
+	@ApiResponses({ @ApiResponse(code = 200, message = "Deleted Successfully"),
+			@ApiResponse(code = 404, message = "API Not Found") })
+	public DeleteToDoResponse deleteToDo(@PathVariable("id") Integer id) {
+		return toDoDAOService.deleteToDo(id);
+	}
+
 }

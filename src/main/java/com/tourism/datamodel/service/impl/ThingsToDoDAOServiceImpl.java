@@ -70,8 +70,8 @@ public class ThingsToDoDAOServiceImpl implements ThingsToDoDAOService {
 		FetchThingsToDoResponse fetchThingsToDoResponse = new FetchThingsToDoResponse();
 		List<ThingsToDoResponse> thingsToDoResponses = new ArrayList<>();
 		try {
-			List<ThingsToDo> dbCuisines = thingsToDoRepository.findAll();
-			dbCuisines.stream().forEach(thingsToDo -> {
+			List<ThingsToDo> dbThingsToDo = thingsToDoRepository.findAll();
+			dbThingsToDo.stream().forEach(thingsToDo -> {
 				ThingsToDoResponse thingsToDoResponse = new ThingsToDoResponse();
 				thingsToDoResponse.setDescription(thingsToDo.getDescription());
 				thingsToDoResponse.setEncodedImage(thingsToDo.getImage());
