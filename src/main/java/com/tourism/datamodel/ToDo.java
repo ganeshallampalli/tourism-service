@@ -13,7 +13,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "things_to_do", schema = "public")
+@Table(name = "to_do", schema = "public")
 public class ToDo {
 
 	@Id
